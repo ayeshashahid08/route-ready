@@ -1,5 +1,33 @@
+# Dependencies
 node_modules/
+
+# Environment files (real secrets). Keep the example file.
 .env
+.env.*
+!.env.example
+
+# Logs
+logs/
 *.log
+npm-debug.log*
+
+# Build output
 dist/
+build/
+coverage/
+
+# Caches
+.cache/
+.eslintcache
+*.tsbuildinfo
+
+# Prisma generated client (only if a custom output folder is used)
+src/generated/
+
+# Database backups and dumps (never push real data)
+*.dump
+*.bak
+
+# OS and editor junk
 .DS_Store
+Thumbs.db
