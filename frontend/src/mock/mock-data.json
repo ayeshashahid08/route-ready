@@ -1,0 +1,148 @@
+{
+  "_note": "Fake data matching docs/API.md. Plan and trips are abbreviated (the real shift A has 10 riders).",
+
+  "login": {
+    "token": "fake-jwt-token",
+    "mustChangePassword": false,
+    "user": { "id": 7, "fullName": "Student 01", "roles": ["student"] }
+  },
+
+  "me": {
+    "id": 7,
+    "fullName": "Student 01",
+    "phone": "+923110000001",
+    "email": null,
+    "roles": ["student"],
+    "mustChangePassword": false,
+    "locationSet": true,
+    "location": { "lat": 31.487, "lng": 74.303, "mapsUrl": null, "addressNote": "Green gate, 2nd floor" }
+  },
+
+  "meCaptain": {
+    "id": 3,
+    "fullName": "Bilal Captain",
+    "phone": "+923000000003",
+    "email": null,
+    "roles": ["captain"],
+    "mustChangePassword": false,
+    "locationSet": true,
+    "location": { "lat": 31.5, "lng": 74.3, "mapsUrl": null, "addressNote": null },
+    "licenceExpiresInDays": 40
+  },
+
+  "shifts": [
+    { "shiftCode": "A", "direction": "pickup", "campusTime": "08:00", "weekdays": [1, 2, 3, 4, 5] },
+    { "shiftCode": "B", "direction": "pickup", "campusTime": "10:00", "weekdays": [1, 2, 3, 4, 5] },
+    { "shiftCode": "C", "direction": "pickup", "campusTime": "11:00", "weekdays": [1, 2, 3, 4, 5] },
+    { "shiftCode": "D", "direction": "pickup", "campusTime": "14:00", "weekdays": [2, 4] },
+    { "shiftCode": "Y", "direction": "dropoff", "campusTime": "15:30", "weekdays": [1, 2, 3, 4, 5] },
+    { "shiftCode": "Z", "direction": "dropoff", "campusTime": "18:30", "weekdays": [1, 2, 3, 4, 5] }
+  ],
+
+  "schedule": {
+    "termId": 1,
+    "termName": "Fall 2026",
+    "days": [
+      { "weekday": 1, "pickupShiftCode": "A", "dropoffShiftCode": "Y" },
+      { "weekday": 2, "pickupShiftCode": "A", "dropoffShiftCode": "Y" },
+      { "weekday": 3, "pickupShiftCode": "A", "dropoffShiftCode": "Y" },
+      { "weekday": 4, "pickupShiftCode": "A", "dropoffShiftCode": "Y" },
+      { "weekday": 5, "pickupShiftCode": "A", "dropoffShiftCode": "Y" }
+    ]
+  },
+
+  "rides": [
+    {
+      "date": "2026-11-23", "direction": "pickup", "shiftCode": "A", "campusTime": "08:00",
+      "state": "assigned", "exception": null,
+      "assignment": {
+        "captain": { "id": 2, "fullName": "Imran Captain", "phone": "+923000000002" },
+        "van": { "plate": "FAKE-002" },
+        "stopOrder": 1, "plannedTime": "07:20", "stopStatus": "pending"
+      }
+    },
+    {
+      "date": "2026-11-23", "direction": "dropoff", "shiftCode": "Y", "campusTime": "15:30",
+      "state": "scheduled", "exception": null, "assignment": null
+    },
+    {
+      "date": "2026-11-24", "direction": "pickup", "shiftCode": "A", "campusTime": "08:00",
+      "state": "cancelled",
+      "exception": { "exceptionId": 5, "type": "cancel", "newShiftCode": null, "status": "applied" },
+      "assignment": null
+    }
+  ],
+
+  "plan": {
+    "planId": 11,
+    "date": "2026-11-23",
+    "shiftCode": "A",
+    "direction": "pickup",
+    "campusTime": "08:00",
+    "status": "draft",
+    "generatedAt": "2026-11-22T17:30:00Z",
+    "publishedAt": null,
+    "trips": [
+      {
+        "tripId": 21, "status": "planned", "startTime": "07:05",
+        "captain": { "id": 2, "fullName": "Imran Captain", "phone": "+923000000002" },
+        "van": { "plate": "FAKE-002", "capacity": 7 },
+        "stops": [
+          { "stopId": 101, "order": 1, "plannedTime": "07:20", "status": "pending",
+            "student": { "id": 7, "fullName": "Student 01", "phone": "+923110000001" } },
+          { "stopId": 102, "order": 2, "plannedTime": "07:32", "status": "pending",
+            "student": { "id": 8, "fullName": "Student 02", "phone": "+923110000002" } },
+          { "stopId": 103, "order": 3, "plannedTime": "07:44", "status": "pending",
+            "student": { "id": 9, "fullName": "Student 03", "phone": "+923110000003" } }
+        ]
+      },
+      {
+        "tripId": 22, "status": "planned", "startTime": "07:25",
+        "captain": { "id": 1, "fullName": "Hamid Head", "phone": "+923000000001" },
+        "van": { "plate": "FAKE-001", "capacity": 7 },
+        "stops": [
+          { "stopId": 104, "order": 1, "plannedTime": "07:40", "status": "pending",
+            "student": { "id": 10, "fullName": "Student 04", "phone": "+923110000004" } }
+        ]
+      }
+    ],
+    "unplaced": [
+      { "student": { "id": 22, "fullName": "Student 16", "phone": "+923110000016" }, "reason": "no_location" }
+    ]
+  },
+
+  "eligibleCaptains": [
+    { "id": 1, "fullName": "Hamid Head", "phone": "+923000000001", "plate": "FAKE-001" },
+    { "id": 2, "fullName": "Imran Captain", "phone": "+923000000002", "plate": "FAKE-002" },
+    { "id": 3, "fullName": "Bilal Captain", "phone": "+923000000003", "plate": "FAKE-003" }
+  ],
+
+  "captainTrips": [
+    {
+      "tripId": 21, "planId": 11, "date": "2026-11-23", "shiftCode": "A", "direction": "pickup",
+      "status": "planned", "startTime": "07:05", "campusTime": "08:00",
+      "van": { "plate": "FAKE-002" },
+      "stops": [
+        { "stopId": 101, "order": 1, "plannedTime": "07:20", "status": "pending",
+          "student": { "id": 7, "fullName": "Student 01", "phone": "+923110000001",
+                       "lat": 31.487, "lng": 74.303, "addressNote": "Green gate, 2nd floor" } },
+        { "stopId": 102, "order": 2, "plannedTime": "07:32", "status": "pending",
+          "student": { "id": 8, "fullName": "Student 02", "phone": "+923110000002",
+                       "lat": 31.524, "lng": 74.256, "addressNote": null } },
+        { "stopId": 103, "order": 3, "plannedTime": "07:44", "status": "pending",
+          "student": { "id": 9, "fullName": "Student 03", "phone": "+923110000003",
+                       "lat": 31.461, "lng": 74.309, "addressNote": null } }
+      ]
+    }
+  ],
+
+  "notifications": {
+    "unreadCount": 1,
+    "items": [
+      { "id": 1, "message": "Your pickup for Mon 23 Nov (shift A) is confirmed: van FAKE-002, 07:20.",
+        "planId": 11, "isRead": false, "createdAt": "2026-11-22T18:00:00Z" },
+      { "id": 2, "message": "Your cancellation for Tue 24 Nov was applied.",
+        "planId": null, "isRead": true, "createdAt": "2026-11-21T09:10:00Z" }
+    ]
+  }
+}
